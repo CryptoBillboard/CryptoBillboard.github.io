@@ -1,0 +1,334 @@
+/* GENERAL */
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #111;
+    text-align: center;
+    color: #efefef;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+.loading {
+    border-radius: 100px;
+    background: rgba(255,255,255,0.8);
+    height: 80px;
+    width: 80px;
+    margin: auto;
+    position: relative;
+}
+    .loading img {
+        padding: 0;
+        margin: auto;
+        height: 60px;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+    }
+.hidden-switches {
+    position: fixed;
+    z-index: 1000;
+    padding: 30px;
+}
+.current-bid-warning {
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+    .current-bid-warning h2 {
+        padding: 0;
+        margin: 0;
+        margin: 10px auto;
+    }
+    
+
+.wallet-wrapper {
+    position: fixed;
+    bottom: 3%;
+    width: 90%;
+    left: 5%;
+}
+    .wallet-wrapper .wallet-btn {
+        color: #666 !important;
+    }
+    .wallet-wrapper .share-info-row {
+        margin-top: 10px;
+    }
+    .wallet-wrapper .share-info-row a {
+        font-size: 0.65rem;
+        opacity: 0.6;
+    }
+    .wallet-wrapper .share-info-row a+a {
+        margin-left: 4px;
+    }
+    .wallet-wrapper .share-info-row a:hover {
+        opacity: 1;
+        text-decoration: underline;
+    }
+.current-bid-wrapper {
+    position: fixed;
+    bottom: 20%;
+    width: 90%;
+    left: 5%;
+    opacity: 0.6;
+}
+    .current-bid-wrapper:hover {
+        cursor: pointer;
+        opacity: 0.95;
+    }
+    .current-bid-wrapper h2 {
+        font-size: 4rem;
+    }
+.billboard {
+    background: #D01C90;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    font-family: 'Cuprum', 'Quicksand', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.billboard .parent {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+.billboard .child {
+    display: table-cell;
+    vertical-align: middle;
+}
+.billboard h1 {
+    font-size: 14rem;
+    letter-spacing: -0.5rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn-xlg {
+    font-size: 2.5rem;
+    padding: 1rem 2rem;
+}
+
+.create-duel-label, .duel-label {
+    margin-bottom: 50px;
+}
+
+.modal {
+    color: #333;
+}
+.modal-lg {
+    max-width: 90%;
+}
+
+.back-home-row {
+    padding: 5px 0;
+    margin-bottom: 40px;
+    background: rgba(0,0,0,0.25);
+    /* border-bottom: 1px solid rgba(255,255,255,0.1); */
+}
+.back-home-row a {
+    cursor: pointer;
+}
+.back-home-row img {
+    height: 70px;
+}
+
+.logo-main {
+    position: absolute;
+    right: 0;
+    font-size: 11px !important;
+    opacity: 0.3;
+    max-width: 200px;
+}
+
+/* PAGES */
+
+#main {
+    /* margin-top: 60px; */
+    text-align: center;
+}
+
+#jumbo {
+    margin-bottom: 40px;
+}
+
+#vs {
+    text-align: center;
+}
+
+#results {
+    /* margin-top: 80px; */
+    text-align: center;
+}
+
+#canvas {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.table thead tr th {
+    font-weight: bold;
+    border-top: 0;
+    font-size: 22px;
+    padding: 1.4rem 1rem;
+}
+.table tbody tr td {
+    vertical-align: middle;
+    border-top: 1px solid rgba(255,255,255,0.3);
+}
+
+#reveal h1 {
+    margin: 60px auto;
+}
+
+/* SPECIFICS */
+
+.info {
+    opacity: 0.5;
+}
+
+.step {
+    margin: 12px 0;
+}
+
+.form-container {
+    max-width: 530px;
+}
+
+.results-container {
+    margin: 60px auto;   
+}
+.results-container h3 {
+    padding: 15px 0;
+}
+
+.container-bg {
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.btn-group-toggle .active {
+    background-color: #A1CDF1 !important;
+}
+
+#content {
+    padding: 30px 15px 20px 15px;
+}
+
+#alert input {
+    width: 100%;
+}
+
+
+
+/***************************************/
+/* WALLET PRE */
+/***************************************/
+
+.pre-wallet {
+
+}
+.pre-wallet label.file {
+    margin: 20px auto;
+}
+
+/***************************************/
+/* WALLET MODAL */
+/***************************************/
+
+#wallet-modal {
+
+}
+    #wallet-modal .modal-dialog {
+
+    }
+        #wallet-modal .modal-dialog .modal-content {
+            /* border-radius: 0; */
+        }
+
+        #wallet-modal .container {
+            max-width: 100%;
+            padding: 0;
+        }
+
+        #wallet-modal .pass {
+            margin-bottom: 1.5rem;
+        }
+
+.form-control .form-control {
+    border: 0;
+    background: transparent;
+}
+
+/***************************************/
+/* WALLET */
+/***************************************/
+
+
+#wallet-container-wrapper {
+    
+    /* padding: 10px 40px; */
+    margin-bottom: 30px;
+}
+#wallet-container {
+    padding: 20px;
+    border: 1px solid #efefef;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 5px;
+}
+#walletinfo {
+    border-top: 1px solid #efefef;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+#wallet #submitCall {
+    color: white;
+}
+
+.select-wallet-file {
+    /* border-bottom: 1px solid rgba(0,0,0,0.2); */
+    /* padding-bottom: 20px; */
+    margin-bottom: 20px;
+}
+
+.select-wallet-file input[type=file] {
+    display: none;
+}
+
+.select-wallet-file label.pass {
+    display: block;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.select-wallet-file input[type=password] {
+    background-color: #f5f5f5;
+    border: 1px solid #e8e8e8;
+    border-radius: 3px;
+    display: block;
+    height: 3em;
+    letter-spacing: .3em;
+    margin-top: 10px;
+    padding: 0 10px;
+    width: 100%;
+}
+
+.select-wallet-file label.hide {
+    display: none;
+}
+
+.select-wallet-file .comment {
+    font-size: .8rem;
+}

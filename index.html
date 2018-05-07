@@ -14,35 +14,53 @@
 
     <link href="https://fonts.googleapis.com/css?family=Cuprum:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext,vietnamese" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="rsp/stylesheet.css">
+    <link rel="stylesheet" href="files/stylesheet.css">
     
     <meta name=viewport content="width=device-width">
-    <title>Billboard</title>
-    <meta name="description" content="Billboard">
+    <title>NAS炫耀板 / NAS ShowOff</title>
+    <meta name="description" content="NAS powered billboard in Silicon Valley!">
+    
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary">
+    <meta name="twitter:description" content="NAS炫耀板 / NAS ShowOff: NAS powered billboard in Silicon Valley!">
+    
+    <!-- Open Graph data -->
+    <meta property="og:title" content="NAS百强争霸榜 / NAS Upvoter" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="NAS炫耀板 / NAS ShowOff: NAS powered billboard in Silicon Valley!" />
 
 </head>
 
 <body>
+
+    <div class="hidden-switches hidden">
+        <a class="switch-main btn btn-sm btn-primary">MAINNET</a>
+        <a class="switch-test btn btn-sm btn-dark">TESTNET</a>
+    </div>
 
     <!-- <div class=logo-main></div> -->
     <!-- <div class=header></div> -->
     
     <div class="billboard">
         <div class="parent">
-            <div class="child"><h1 id="current-data">&nbsp;</h1></div>
+            <div class="child">
+                <h1 class="current-data">
+                    <div class="loading"><img src="images/loader.gif"/></div>
+                </h1>
+            </div>
         </div>
     </div>
 
     <div class="current-bid-wrapper" data-toggle="modal" data-target="#wallet-modal">
-        <div>Current Bid (NAS)</div>
-        <h2 id="current-bid">&nbsp;</h2>
+        <div>现价 Current Bid</div>
+        <h2 class="current-bid">...</h2>
     </div>
 
     <!-- WALLET BUTTON -->
     <div class="wallet-wrapper">
             <div>
-                <a class="btn btn-light btn-lg wallet-btn" data-toggle="modal" data-target="#wallet-modal">
-                    出价 Bid 🔥
+                <a class="btn btn-light btn-lg btn-xlg wallet-btn" data-toggle="modal" data-target="#wallet-modal">
+                    🔥 炫耀 Show Off 🔥
                 </a>
             </div>
             <div class="share-info-row">
@@ -61,7 +79,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">出价！Bidding Time!</h3>
+                    <h3 class="modal-title">炫耀！Show Off Time!</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -89,7 +107,7 @@
                                 </div>
 
                                 <div class="pre-wallet">
-                                    <h3>💰 解锁钱包开始出价！<br>Unlock your wallet to start bidding!</h3>
+                                    <h3>💰 解锁钱包开始炫耀！<br>Unlock your wallet to start showing off!</h3>
                                     <div class="select-wallet-file"></div>
                                 </div>
                                 
@@ -161,10 +179,17 @@
                                         </div>
                                     </div>
 
+                                    <div class="current-bid-warning">
+                                        <h3>
+                                            只要超过<strong><span class="current-bid"></span></strong>，就是你的摇摆时间！
+                                            Bid higher than <strong><span class="current-bid"></span></strong> to show off!
+                                        </h3>
+                                    </div>
+
                                     <div class="form-group">
                                         <div class="input-group input-group-lg">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">出价 Bidding Amount</span>
+                                                <span class="input-group-text">出价 Bidding Amount (NAS)</span>
                                             </div>
                                             <input class=form-control id=run_value value=0 data-validate-order-matters="required number">
                                         </div>
@@ -173,7 +198,7 @@
                                     <div class="form-group">
                                         <div class="input-group input-group-lg">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">讯息 Message</span>
+                                                <span class="input-group-text">炫耀讯息 Show Off Message</span>
                                             </div>
                                             <input class=form-control id="bid-display" value="" data-validate-order-matters="required number">
                                         </div>
@@ -203,7 +228,7 @@
                                     </div>   
 
                                     <div>
-                                        <a id="submitCall" class="btn btn-success btn-xlg btn-block" role="button">出价 Bid 🔥</a>
+                                        <a id="submitCall" class="btn btn-success btn-xlg btn-block" role="button">🔥 炫耀 Show Off 🔥</a>
                                     </div>
 
                                 </div>      
@@ -250,7 +275,8 @@
                     </button>
                 </div>
                 <div class="modal-body alert-content">
-                    Bid higher than the last bid to display your own text!
+                    <p>NAS powered billboard in Silicon Valley!</p>
+                    <p>Bid to advertise on a digital billboard that runs on NAS. The billboard is displayed off of Hwy 1 in the heart of Silicon Valley and loved by facebook, google, twitter developers & world known investors. Join our billboard today and be famous and admired by the important and powerful worldwide. Place the highest bid and your message is automatically displayed on the billboard until another customer places a higher bid for the billboard space.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -270,7 +296,7 @@
     <script src=js/home.v1.js></script>
     <script src=js/i18n.js data-depends=jquery.slim></script>
     <script src=js/ui-block.js data-depends="bootbox blockies jquery.slim i18n.js nebulas.js"></script>
-    <script src="rsp/jsshare.js"></script>
-    <script src="rsp/sitescript.js"></script>
+    <script src="files/jsshare.js"></script>
+    <script src="files/sitescript.js"></script>
 </body>
 </html>

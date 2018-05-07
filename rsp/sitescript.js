@@ -420,7 +420,7 @@ function showPostWallet() {
 function updateDisplay(result) {
     var normalizedBid = nebulas.Unit.fromBasic(result.current_bid, "nas");
     var normalizedBidStr = Utils.toBigNumber(normalizedBid).toString(10);
-    $("#current-bid").text(normalizedBidStr);
+    $("#current-bid").text(result.current_bid);
     $("#current-data").text(result.current_data);
 }
 

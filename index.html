@@ -5,20 +5,17 @@
     <meta charset=utf-8>
     <link rel="icon shortcut" href=images/logo.png type=image/png>
     <link rel=apple-touch-icon href=images/logo.png>
-    <link rel="stylesheet" href="rsp/reset.css">
-    <link rel=stylesheet href=lib/bootstrap-4.0.0-dist/css/bootstrap.min.css>
-    <link rel=stylesheet href=lib/prismjs-1.13.0/prism.css>
     <link rel=stylesheet href=css/base.css>
     <link rel=stylesheet href=css/ui-block.css>
-    <link rel=stylesheet href=css/codemirror.css>
+    <link rel=stylesheet href=lib/bootstrap-4.0.0-dist/css/bootstrap.min.css>
 
     <link href="https://fonts.googleapis.com/css?family=Cuprum:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext,vietnamese" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="rsp/stylesheet.css">
     
     <meta name=viewport content="width=device-width">
-    <title>Billboard</title>
-    <meta name="description" content="Billboard">
+    <title>Leaderboard</title>
+    <meta name="description" content="Leaderboard">
 
 </head>
 
@@ -27,31 +24,40 @@
     <!-- <div class=logo-main></div> -->
     <!-- <div class=header></div> -->
     
-    <div class="billboard">
-        <div class="parent">
-            <div class="child"><h1 id="current-data">&nbsp;</h1></div>
-        </div>
-    </div>
-
-    <div class="current-bid-wrapper" data-toggle="modal" data-target="#wallet-modal">
-        <div>Current Bid (NAS)</div>
-        <h2 id="current-bid">&nbsp;</h2>
+    <div class="item-containers">
     </div>
 
     <!-- WALLET BUTTON -->
     <div class="wallet-wrapper">
-        <a class="btn btn-light btn-lg" data-toggle="modal" data-target="#wallet-modal">
-            出价 Bid 🔥
-        </a>
+        <div>
+            <a class="btn btn-light btn-lg" data-toggle="modal" data-target="#wallet-modal">
+                点赞 Vote 👍
+            </a>
+        </div>
+        <div class="share-info-row hidden">
+            <p>
+                <button class="btn btn-default" data-toggle="modal" data-target="#info-modal">Info/Help</button>
+                <!-- <button class="btn btn-default social_share" data-type="vk">ВКонтакте</button> -->
+                <button class="btn btn-default social_share" data-type="fb">Facebook</button>
+                <button class="btn btn-default social_share" data-type="tw">Twitter</button>
+                <!-- <button class="btn btn-default social_share" data-type="lj">LiveJournal</button> -->
+                <!-- <button class="btn btn-default social_share" data-type="ok">Одноклассники</button> -->
+                <!-- <button class="btn btn-default social_share" data-type="mailru">Mail.Ru</button> -->
+                <button class="btn btn-default social_share" data-type="gplus">Google+</button>
+                <button class="btn btn-default social_share" data-type="telegram">Telegram</button>
+                <button class="btn btn-default social_share" data-type="whatsapp">Whatsapp</button>
+                <!-- <button class="btn btn-default social_share" data-type="viber">Viber</button> -->
+                <button class="btn btn-default social_share" data-type="email">Email</button>
+            </p>            
+        </div>
     </div>
-
 
     <!-- WALLET MODAL -->
     <div id="wallet-modal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">出价！Bidding Time!</h3>
+                    <h3 class="modal-title">为我点赞！Voting Time!</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -79,7 +85,7 @@
                                 </div>
 
                                 <div class="pre-wallet">
-                                    <h3>💰 解锁钱包开始出价！<br>Unlock your wallet to start bidding!</h3>
+                                    <h3>💰 解锁钱包开始投票！<br>Unlock your wallet to start voting!</h3>
                                     <div class="select-wallet-file"></div>
                                 </div>
                                 
@@ -154,7 +160,7 @@
                                     <div class="form-group">
                                         <div class="input-group input-group-lg">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">出价 Bidding Amount</span>
+                                                <span class="input-group-text">点赞数 Upvote Amount</span>
                                             </div>
                                             <input class=form-control id=run_value value=0 data-validate-order-matters="required number">
                                         </div>
@@ -163,7 +169,7 @@
                                     <div class="form-group">
                                         <div class="input-group input-group-lg">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">讯息 Message</span>
+                                                <span class="input-group-text">为我点赞 Vote Item</span>
                                             </div>
                                             <input class=form-control id="bid-display" value="" data-validate-order-matters="required number">
                                         </div>
@@ -193,7 +199,7 @@
                                     </div>   
 
                                     <div>
-                                        <a id="submitCall" class="btn btn-success btn-xlg btn-block" role="button">出价 Bid 🔥</a>
+                                        <a id="submitCall" class="btn btn-success btn-xlg btn-block" role="button">点赞! Upvote! 👍</a>
                                     </div>
 
                                 </div>      
@@ -229,6 +235,26 @@
         </div>
     </div>
 
+    <!-- Info Modal -->
+    <div id="info-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body alert-content">
+                    info...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src=lib/jquery-3.3.1.min.js></script>
     <script src=lib/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js data-depends=jquery.slim></script>
     <script src=lib/bootbox.min.js data-depends="bootstrap jquery.slim"></script>
@@ -240,6 +266,7 @@
     <script src=js/home.v1.js></script>
     <script src=js/i18n.js data-depends=jquery.slim></script>
     <script src=js/ui-block.js data-depends="bootbox blockies jquery.slim i18n.js nebulas.js"></script>
+    <script src="rsp/jsshare.js"></script>
     <script src="rsp/sitescript.js"></script>
 </body>
 </html>

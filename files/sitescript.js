@@ -590,21 +590,28 @@ $(function() {
         width: $this.outerWidth(),
         height: $this.outerHeight(),
         color: "#FFFFFF",
-        count: 30,
+        count: 50,
         overlap: 0,
         speed: 1
       }, options );
       
-      var sparkle = new Sparkle( $this, settings );
+      var sparkle = new Sparkle($this, settings);
+      sparkle.over();
+    //   $this.on({
+    //     "load" : function(e) {
+    //       sparkle.over();
+    //     }
+    //   });      
+    //   sparkle.createSparkles();
       
-      $this.on({
-        "mouseover focus" : function(e) {
-          sparkle.over();
-        },
-        "mouseout blur" : function(e) {
-          sparkle.out();
-        }
-      });
+    //   $this.on({
+    //     "mouseover focus" : function(e) {
+    //       sparkle.over();
+    //     },
+    //     "mouseout blur" : function(e) {
+    //       sparkle.out();
+    //     }
+    //   });
       
     });
     
@@ -616,11 +623,13 @@ $(function() {
   function Sparkle( $parent, options ) {
     this.options = options;
     this.init( $parent );
+    // this.over();
   }
   
   Sparkle.prototype = {
     
     "init" : function( $parent ) {
+        console.log("init");
       
       var _this = this;
       
@@ -788,27 +797,26 @@ $(function() {
     
     "cancel" : function() {
       
-      this.fadeCount = 100;
+        this.fadeCount = 100;
   
     },
     
     "over" : function() {
       
-      window.cancelAnimationFrame( this.anim );
-      
-      for( var i = 0; i < this.options.count; i++ ) {
-        this.particles[i].opacity = Math.random();
-      }
-      
-      this.fade = false;
-      this.update();
+        window.cancelAnimationFrame( this.anim );
+        
+        for( var i = 0; i < this.options.count; i++ ) {
+            this.particles[i].opacity = Math.random();
+        }
+        
+        this.fade = false;
+        this.update();
   
     },
     
     "out" : function() {
-      
-      this.fade = true;
-      this.cancel();
+        this.fade = true;
+        this.cancel();
       
     },
     
@@ -833,29 +841,29 @@ $(function() {
   //   as an argument, and the collection as `this`
    
    
-  $.fn.imagesLoaded = function(callback){
-    var elems = this.filter('img'),
-        len   = elems.length,
-        blank = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+//   $.fn.imagesLoaded = function(callback){
+//     var elems = this.filter('img'),
+//         len   = elems.length,
+//         blank = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
         
-    elems.bind('load.imgloaded',function(){
-        if (--len <= 0 && this.src !== blank){ 
-          elems.unbind('load.imgloaded');
-          callback.call(elems,this); 
-        }
-    }).each(function(){
-       // cached images don't fire load sometimes, so we reset src.
-       if (this.complete || this.complete === undefined){
-          var src = this.src;
-          // webkit hack from https://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
-          // data uri bypasses webkit log warning (thx doug jones)
-          this.src = blank;
-          this.src = src;
-       }  
-    }); 
+//     elems.bind('load.imgloaded',function(){
+//         if (--len <= 0 && this.src !== blank){ 
+//           elems.unbind('load.imgloaded');
+//           callback.call(elems,this); 
+//         }
+//     }).each(function(){
+//        // cached images don't fire load sometimes, so we reset src.
+//        if (this.complete || this.complete === undefined){
+//           var src = this.src;
+//           // webkit hack from https://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
+//           // data uri bypasses webkit log warning (thx doug jones)
+//           this.src = blank;
+//           this.src = src;
+//        }  
+//     }); 
    
-    return this;
-  };
+//     return this;
+//   };
   
   
   

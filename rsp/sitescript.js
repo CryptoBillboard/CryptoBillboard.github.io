@@ -6,7 +6,7 @@
 
 "use strict";
 
-const contractAddress = "n1pzLz29aEv68DKAVmPvCztHXXmGoUcVemu";
+const contractAddress = "n1xrmFg2XfbfVceoSC3yC798KR4zmabphit";
 var nebulas = require("nebulas"),
     Account = nebulas.Account,
     Utils = nebulas.Utils,
@@ -17,7 +17,7 @@ var nebulas = require("nebulas"),
 
 /////////////////////////////////////////////////////////////////////////////////////
 // 
-//   INIT NEBULA
+//   INIT NEBULAS
 //
 /////////////////////////////////////////////////////////////////////////////////////
 
@@ -58,7 +58,7 @@ function onClickCallTest(alsoExecute) {
             })
             .then(function (resp) {
                 $("#call_test_result").text(JSON.stringify(resp));
-                // console.log("alsoExecute",alsoExecute);
+                console.log("alsoExecute",alsoExecute);
                 if (alsoExecute) {
                     onClickCall();
                 }
@@ -147,6 +147,11 @@ function onUnlockFile(swf, fileJson, account, password) {
     $(".modal.loading").modal("show");
 
     $("#run_from_addr").val(fromAddr).trigger("input");
+    // if ($tab.prop("id") == "tab2") {
+    //     $("#from_addr").val(fromAddr).trigger("input");
+    //     $("#to_addr").val(account.getAddressString()).trigger("input");
+    // } else if ($tab.prop("id") == "tab3")
+    //     $("#run_from_addr").val(fromAddr).trigger("input");
 
     try {
         account.fromKey(fileJson, password);
@@ -156,20 +161,22 @@ function onUnlockFile(swf, fileJson, account, password) {
 
         neb.api.gasPrice()
             .then(function (resp) {
-                console.log("api gasprice");
                 $("#gas_price").val(resp.gas_price);
                 $("#run_gas_price").val(resp.gas_price);
                 console.log(resp);
                 return neb.api.getAccountState(fromAddr);
             })
             .then(function (resp) {
-                console.log("api gasprice 2");
                 console.log(resp);
                 var balance = nebulas.Unit.fromBasic(resp.balance, "nas");
 
                 $("#run_balance").val(balance + " NAS");
-                $(".modal.loading").modal("hide");
+                // if ($tab.prop("id") == "tab2")
+                //     $("#balance").val(balance + " NAS");
+                // else if ($tab.prop("id") == "tab3")
+                //     $("#run_balance").val(balance + " NAS");
                 showPostWallet();
+                $(".modal.loading").modal("hide");
             })
             .catch(function (e) {
                 // this catches e thrown by nebulas.js!neb
@@ -310,7 +317,7 @@ function innerCall(callback) {
     // prepare contract
     
     var bidDisplay = $('#bid-display').val();
-    var functionToCall = "vote";
+    var functionToCall = "bid";
     var argsToCall = JSON.stringify([bidDisplay]);
     console.log(bidDisplay, functionToCall, argsToCall);
     params.contract = {
@@ -396,6 +403,14 @@ function setNet(net) {
 
 $(function() {
     $(document).on('.data-api');
+
+    // Social Media
+    var buttons = document.querySelectorAll(".social_share");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', function() {
+            return JSShare.go(this);
+        }, false);
+    }   
 });
 
 $("#call_test").on("click", onClickCallTest);
@@ -422,16 +437,16 @@ function refreshDisplay() {
         gasPrice: 1000000,
         gasLimit: 200000,
         contract: {
-            function: "list_counters",
+            function: "current",
             args: "[]",
         }
     };
     console.log("refreshDisplay > callParamsObj", callParamsObj);
     neb.api.call(callParamsObj).then(function(tx) {
-        // console.log("refreshDisplay's > full result: ", tx);
+        console.log("refreshDisplay's > full result: ", tx);
         if (tx && tx["result"] != "") {
             var result = JSON.parse(tx["result"]);
-            // console.log("refreshDisplay's > result: ", result);
+            console.log("refreshDisplay's > result: ", result);
             updateDisplay(result);
         }
     }).catch((err) => {
@@ -446,57 +461,16 @@ function refreshDisplay() {
 //
 /////////////////////////////////////////////////////////////////////////////////////
 
-function bindVote() {
-    $(".item").on("click", function() {
-        var itemName = $(this).data("item");
-        console.log(itemName);
-        $("#bid-display").val(itemName);
-        $("#wallet-modal").modal("show");
-    });
-}
-
-function updateDisplay(result) {
-    console.log(result);
-    $(".item-containers").html("");
-    var resultArr = [];
-    for (var votedItem in result) {
-        var itemCount = result[votedItem];
-        var itemCountBig = Utils.toBigNumber(itemCount);
-        var normalizedBid = nebulas.Unit.fromBasic(itemCount, "nas");
-        var normalizedBidBig = Utils.toBigNumber(normalizedBid);
-        var normalizedBidStr = Utils.toBigNumber(normalizedBid).toString(10);
-        resultArr.push({
-            "votedItem": votedItem,
-            "votedAmount": result[votedItem],
-            "votedAmountBig": itemCountBig,
-            "votedAmountNormalized": normalizedBid,
-            "votedAmountNormalizedBig": normalizedBidBig,
-            "votedAmountNormalizedStr": normalizedBidStr,
-        });
-    }
-    resultArr.sort(function (a, b) {
-        if (a.votedAmountBig.lt(b.votedAmountBig)) return 1;
-        if (b.votedAmountBig.lt(a.votedAmountBig)) return -1;
-        return 0;
-    });
-
-    for (var i=0; i<resultArr.length; i++) {
-        var item = resultArr[i];
-        var itemContainer = $("<div>", {"class": "item rank"+i, "data-item": item["votedItem"]}).append(
-            $("<div>", {"class": "item-rank", "text": i+1}),
-            $("<div>", {"class": "item-name", "text": item["votedItem"]}),
-            $("<div>", {"class": "item-amount", "text": item["votedAmount"] + " NAS / " + item["votedAmountNormalizedStr"] + " WEI"}),
-        );
-        $(".item-containers").append(itemContainer);
-    }
-    bindVote();
-    // $("#current-bid").text(normalizedBidStr);
-    // $("#current-data").text(result.current_data);
-}
-
 function showPostWallet() {
     $(".post-wallet").show();
     $(".pre-wallet").hide();
+}
+
+function updateDisplay(result) {
+    var normalizedBid = nebulas.Unit.fromBasic(result.current_bid, "nas");
+    var normalizedBidStr = Utils.toBigNumber(normalizedBid).toString(10);
+    $("#current-bid").text(result.current_bid);
+    $("#current-data").text(result.current_data);
 }
 
 function showAlert(message, alertType) {

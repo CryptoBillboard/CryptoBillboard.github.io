@@ -7,7 +7,7 @@
 "use strict";
 
 const testContractAddress = "n1f432XwLCBfR8ZiYqpGk5C9qpGdJquHUob";
-const mainContractAddress = "n1jYSPg5ZRzXs3sNAZyopvvbSsFr4yEYBqG";
+const mainContractAddress = "n1oNjW8Ws5ZWMxZP85AjpUNkywtd8iKZbFX";
 var contractAddress = mainContractAddress;
 
 var nebulas = require("nebulas"),
@@ -452,7 +452,7 @@ function refreshDisplay() {
     console.log("refreshDisplay > callParamsObj", callParamsObj);
     neb.api.call(callParamsObj).then(function(tx) {
         console.log("refreshDisplay's > full result: ", tx);
-        if (tx && tx["result"] != "") {
+        if (tx && tx["result"] && tx["result"] != "") {
             var result = JSON.parse(tx["result"]);
             console.log("refreshDisplay's > result: ", result);
             updateDisplay(result);
